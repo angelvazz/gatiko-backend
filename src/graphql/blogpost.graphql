@@ -1,0 +1,23 @@
+type BlogPost {
+  id: ID!
+  content: String!
+  userId: String!
+  userName: String!
+  createdAt: String!
+}
+
+type Query {
+  getPost(id: ID!): BlogPost
+  listPosts: [BlogPost!]!
+}
+
+type Mutation {
+  createPost(content: String!, userId: String!, userName: String!): BlogPost!
+  updatePost(id: ID!, content: String!): BlogPost!
+  deletePost(id: ID!): BlogPost!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
