@@ -8,13 +8,28 @@ type BlogPost {
 
 type Query {
   getPost(id: ID!): BlogPost
-  listPosts: [BlogPost!]!
+  listPosts: [BlogPost!]
+}
+
+input CreatePostInput {
+  content: String!
+  userId: String!
+  userName: String!
+}
+
+input UpdatePostInput {
+  id: ID!
+  content: String!
+}
+
+input DeletePostInput {
+  id: ID!
 }
 
 type Mutation {
-  createPost(content: String!, userId: String!, userName: String!): BlogPost!
-  updatePost(id: ID!, content: String!): BlogPost!
-  deletePost(id: ID!): BlogPost!
+  createPost(input: CreatePostInput!): BlogPost
+  updatePost(input: UpdatePostInput!): BlogPost
+  deletePost(input: DeletePostInput!): BlogPost
 }
 
 schema {

@@ -3,7 +3,8 @@ const uuid = require('uuid');
 const documentClient = new AWS.DynamoDB.DocumentClient();
 
 const createPost = async (args) => {
-  const { content, userId, userName } = args;
+  const { input } = args;
+  const { content, userId, userName } = input;
   const id = uuid.v4();
   const createdAt = new Date().toISOString();
 
@@ -55,7 +56,7 @@ const listPosts = async () => {
 };
 
 const updatePost = async (args) => {
-  const { id, content } = args;
+  const { id, content } = args.input;
 
   const params = {
     TableName: 'gatiko-table',
@@ -93,7 +94,7 @@ const updatePost = async (args) => {
 };
 
 const deletePost = async (args) => {
-  const { id } = args;
+  const { id } = args.input;
 
   const params = {
     TableName: 'gatiko-table',
